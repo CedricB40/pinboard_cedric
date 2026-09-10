@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ pin.title }}{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_pin_index') }}" class="btn btn-outline-secondary mb-4">&larr; Retour</a>
+
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ asset('images/pins/' ~ pin.imageName) }}" alt="{{ pin.title }}" class="img-fluid" style="max-width: 600px;">
+        </div>
+        <div class="col-md-6">
+            <h1>{{ pin.title }}</h1>
+            <p>{{ pin.description }}</p>
+            <p class="text-muted">
+                Par {{ pin.user.firstname }} {{ pin.user.lastname }}
+            </p>
+            <p class="text-muted small">
+                Publié le {{ pin.createdAt|date('d/m/Y') }}<br>
+                Modifié le {{ pin.updatedAt|date('d/m/Y \\à H:i') }}
+            </p>
+
+            {% if app.user and pin.user == app.user %}
+                <a href="{{ path('app_pin_edit', {'id': pin.id}) }}" class="btn btn-primary">Éditer</a>
+                {{ include('pin/_delete_form.html.twig') }}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

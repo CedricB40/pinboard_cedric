@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block body %}
+    <h1 class="mb-4">Mon profil</h1>
+
+    <div class="row">
+        <div class="col-md-3">
+            {% if user.imageName %}
+                <img src="{{ asset('images/users/' ~ user.imageName) }}" alt="Photo de profil" class="img-fluid rounded">
+            {% else %}
+                <img src="{{ asset('images/users/default-avatar.png') }}" alt="Photo de profil par défaut" class="img-fluid rounded">
+            {% endif %}
+        </div>
+        <div class="col-md-9">
+            <ul class="list-unstyled">
+                <li><strong>Prénom :</strong> {{ user.firstname }}</li>
+                <li><strong>Nom :</strong> {{ user.lastname }}</li>
+                <li><strong>Email :</strong> {{ user.email }}</li>
+                <li><strong>Membre depuis :</strong> {{ user.createdAt|date('d/m/Y') }}</li>
+            </ul>
+
+            <a href="{{ path('app_account_edit') }}" class="btn btn-primary">Modifier mon profil</a>
+        </div>
+    </div>
+{% endblock %}

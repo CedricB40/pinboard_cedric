@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Pins{% endblock %}
+
+{% block body %}
+    <h1 class="mb-4">Découvrez les Pins</h1>
+
+    <div class="row">
+        {% for pin in pins %}
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <a href="{{ path('app_pin_show', {'id': pin.id}) }}">
+<img src="{{ asset('images/pins/' ~ pin.imageName)|imagine_filter('pin_thumb') }}" class="card-img-top" alt="{{ pin.title }}">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{{ path('app_pin_show', {'id': pin.id}) }}" class="text-decoration-none text-dark">
+                                {{ pin.title|u.truncate(30, '...', true) }}
+                            </a>
+                        </h5>
+                        <p class="card-text text-muted small mb-1">
+                            Publié {{ pin.createdAt|ago }}
+                        </p>
+                        <p class="card-text text-muted small">
+                            Par {{ pin.user.firstname }} {{ pin.user.lastname }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p>Aucun Pin n'a encore été publié.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

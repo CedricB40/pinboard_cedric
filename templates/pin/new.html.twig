@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un Pin{% endblock %}
+
+{% block body %}
+    <h1>Créer un nouveau Pin</h1>
+
+    {{ include('pin/_form.html.twig', {'button_label': 'Créer'}) }}
+
+    <a href="{{ path('app_pin_index') }}">Retour à la liste</a>
+{% endblock %}
