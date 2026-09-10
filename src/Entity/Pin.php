@@ -38,6 +38,12 @@ class Pin
     private ?string $imageName = null;
 
     #[Vich\UploadableField(mapping: 'pin_image', fileNameProperty: 'imageName')]
+    #[Assert\File(
+        maxSize: '5M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/gif'],
+        mimeTypesMessage: 'Merci de déposer une image valide (JPEG, PNG, WEBP ou GIF).',
+        maxSizeMessage: 'L\'image ne doit pas dépasser {{ limit }} {{ suffix }}.',
+    )]
     private ?File $imageFile = null;
 
     #[ORM\ManyToOne(inversedBy: 'pins')]

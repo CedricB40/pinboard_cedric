@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Attribute as Vich;
 
 use App\Entity\Traits\Timestampable;
@@ -39,6 +40,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $imageName = null;
 
     #[Vich\UploadableField(mapping: 'user_image', fileNameProperty: 'imageName')]
+    #[Assert\File(
+        maxSize: '5M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/gif'],
+        mimeTypesMessage: 'Merci de déposer une image valide (JPEG, PNG, WEBP ou GIF).',
+        maxSizeMessage: 'L\'image ne doit pas dépasser {{ limit }} {{ suffix }}.',
+    )]
     private ?File $imageFile = null;
 
     /**
