@@ -3,7 +3,7 @@ DirectoryIndex index.php
 <IfModule mod_headers.c>
     Header always set X-Frame-Options "SAMEORIGIN"
     Header always set X-Content-Type-Options "nosniff"
-    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net data: 'sha256-1Xms9nHznV6/m2LDWe1ugdqSnRfV8MNGqLA6CW4Q65s=' 'sha256-ozRXH2t9fQ6YJ8X2nWfBHss82xFbLiUl/eIkaE2WN+k=' 'sha256-6PeNBy+owUm6Gd8Z5yEum0eIWDj1/qFaCZ3n8xIKraY='; style-src 'self' https://cdn.jsdelivr.net; img-src 'self' data:; font-src 'self'; frame-ancestors 'self'"
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net data: 'sha256-1Xms9nHznV6/m2LDWe1ugdqSnRfV8MNGqLA6CW4Q65s=' 'sha256-ozRXH2t9fQ6YJ8X2nWfBHss82xFbLiUl/eIkaE2WN+k=' 'sha256-6PeNBy+owUm6Gd8Z5yEum0eIWDj1/qFaCZ3n8xIKraY='; style-src 'self' https://cdn.jsdelivr.net 'sha256-WAyOw4V+FqDc35lQPyRADLBWbuNK8ahvYEaQIYF1+Ps='; img-src 'self' data:; font-src 'self'; frame-ancestors 'self'"
 </IfModule>
 
 <IfModule mod_negotiation.c>
